@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>רשימת סטארטאפים</title>
+        <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <nav>
+            <% if (user) { %>
+                <span>שלום, <%= user.fullName %></span>
+                <a href="/logout">התנתק</a>
+            <% } else { %>
+                <a href="/login">התחבר</a>
+                <a href="/register">הרשם</a>
+            <% } %>
+        </nav>
+        
+        <% if (user && user.role === 'Entrepreneur') { %>
+            <div class="btn-manage">
+                <a href="/interests">
+                    <button>ניהול בקשות עניין לסטארטאפים שלי</button>
+                </a>
+            </div>
+        <% } %>
+        
+        <div class="container">
+            <h1>כל הסטארטאפים</h1>
+            <a href="/index/new" class="add-new">הוסף סטארטאפ חדש</a>
+            
+            <ul>
+            <% startups.forEach(startup => { %>
+                <li>
+                    <h3><%= startup.startupName %></h3>
+                    <p><%= startup.elevatorPitch %></p>
+                    <small>קטגוריה: <%= startup.category %></small>
+                    <small>מחפשים: <%= startup.lookingFor.join(', ') %></small>
+                    <small>מספר נרשמים: <%= startup.stats.interestedCount %></small>
+                    <small>מספר משקיעים: <%= startup.stats.investorViews %></small>
+                    
+                    <div class="actions">
+                        <a href="/interests/new?startupName=<%= startup.startupName %>&projectId=<%= startup._id %>" class="interest-btn">
+                            אני מעוניין/ת להצטרף
+                        </a>
+                        <a href="/index/edit/<%= startup._id %>" class="edit-btn">עריכה</a>
+                        <form action="/index/<%= startup._id %>/delete" method="POST" style="display:inline;">
+                            <button type="submit" onclick="return confirm('בטוח שברצונך למחוק?')" class="delete-btn">מחק</button>
+                        </form>
+                    </div>
+                </li>
+            <% }) %>
+            </ul>
+        </div>
+    </body>
+</html>

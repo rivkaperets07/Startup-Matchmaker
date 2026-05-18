@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>הוספת סטארטאפ חדש</title>
+     <link rel="stylesheet" href="/styles.css">
+      <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f9; line-height: 1.6; }
+        .container { max-width: 600px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin: auto; }
+        h1 { color: #003366; border-bottom: 2px solid #003366; padding-bottom: 10px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+            width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+        }
+        textarea { height: 100px; resize: vertical; }
+        button { background-color: #003366; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #003366; }
+        .back-link { display: block; margin-top: 15px; text-align: center; color: #666; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <h1>צור סטארטאפ חדש</h1>
+    
+    <form action="/index" method="POST">
+        <div>
+            <label>שם הסטארטאפ:</label><br>
+            <input type="text" name="startupName" required>
+        </div><br>
+
+        <div>
+            <label>Elevator Pitch (תיאור קצר):</label><br>
+            <textarea name="elevatorPitch" required></textarea>
+        </div><br>
+
+        <div>
+            <label>קטגוריה:</label>
+            <select name="category">
+                <option value="GreenTech">GreenTech</option>
+                <option value="FinTech">FinTech</option>
+                <option value="AI">AI</option>
+                <option value="MedTech">MedTech</option>
+                <option value="Other">אחר</option>
+            </select>
+        </div><br>
+
+        <div>
+            <label>מה אנחנו מחפשים? (הפרד בפסיקים):</label><br>
+            <input type="text" name="lookingFor" placeholder="למשל: CTO, Seed Funding, Developer">
+        </div><br>
+
+        <button type="submit">שמור סטארטאפ</button>
+    </form>
+
+    <br>
+    <a href="/index">חזרה לרשימה</a>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+    <head>
+        <meta charset="UTF-8">
+        <title>בקשות עניין</title>
+         <link rel="stylesheet" href="/styles.css">
+    </head>
+    <body>
+        <nav>
+            <% if (user) { %>
+                <span>שלום, <%= user.fullName %></span>
+                <a href="/logout">התנתק</a>
+            <% } else { %>
+                <a href="/login">התחבר</a>
+                <a href="/register">הרשם</a>
+            <% } %>
+        </nav>
+        
+        <h1>כל בקשות העניין</h1>
+        
+        <ul>
+        <% interests.forEach(interest => { %>
+<li>
+    
+    <h3>פרויקט: <%= interest.projectId?.startupName || 'לא נמצא' %></h3>
+    <p>משתמש: <%= interest.userId?.fullName || 'לא נמצא' %> (<%= interest.userId?.email %>)</p>
+    <p>סוג: <%= interest.type %></p>
+    <p>סטטוס: <%= interest.status %></p>
+    <p>הודעה: <%= interest.message %></p>
+    <p>אימייל: <%= interest.contactInfo?.email %></p>
+    <p>טלפון: <%= interest.contactInfo?.phone %></p>
+
+    <% if (user && interest.projectId && interest.projectId.ownerId && user._id.toString() === interest.projectId.ownerId.toString()) { %>
+        <form action="/interests/<%= interest._id %>/status" method="POST" style="display:inline;">
+            <select name="status">
+                <option value="Approved">אשר</option>
+                <option value="Rejected">דחה</option>
+            </select>
+            <button type="submit">עדכן סטטוס</button>
+        </form>
+
+        <form action="/interests/<%= interest._id %>/delete" method="POST" style="display:inline;">
+            <button type="submit" onclick="return confirm('בטוח שברצונך למחוק?')">מחק</button>
+        </form>
+    <% } %>
+</li>
+            <hr>
+        <% }) %>
+        </ul>
+    </body>
+</html>

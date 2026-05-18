@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>הרשמה למערכת</title>
+</head>
+<body>
+    <% if (locals.errorMessage) { %>
+        <div style="color: white; background-color: #ff4d4d; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center;">
+            <strong>שגיאה:</strong> <%= errorMessage %>
+        </div>
+    <% } %>
+    <h1>צור חשבון חדש</h1>
+    <form action="/register" method="POST">
+        <input type="text" name="fullName" placeholder="שם מלא" required><br><br>
+        
+        <input type="email" name="email" placeholder="אימייל" required><br><br>
+        
+        <input type="password" name="password" placeholder="סיסמה (מינימום 6 תווים)" required><br><br>
+
+        <label>אני רוצה להירשם כ:</label><br>
+        <select name="role" required>
+            <option value="Entrepreneur">יזם (Entrepreneur)</option>
+            <option value="Investor">משקיע (Investor)</option>
+            <option value="Developer">מפתח (Developer)</option>
+        </select><br><br>
+
+        <button type="submit">הירשם</button>
+    </form>
+    <p>כבר רשום? <a href="/login">התחבר כאן</a></p>
+</body>
+</html>
