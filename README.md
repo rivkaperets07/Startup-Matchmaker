@@ -17,4 +17,24 @@ A Fullstack web application designed to connect innovative startups with talente
 
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY_NAME.git)
+   git clone https://github.com/rivkaperets07/Startup-Matchmaker.git
+   cd Startup-Matchmaker
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env` file in the project root:
+   ```env
+   MONGO_URI=<your MongoDB connection string>
+   JWT_SECRET=<any long random string>
+   PORT=3000
+   ```
+
+4. Start the server:
+   ```bash
+   npm start
+   ```
+   The app runs at http://localhost:3000.
